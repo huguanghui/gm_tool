@@ -1,0 +1,19 @@
+#widget_3 {
+  border: 2px solid black;
+}
+
+#widget_5 {
+  border: 1px solid grey;
+}
+
+#widget_6 {
+  border: 1px solid grey;
+}
+
+TableWidget#TableWidget {
+    border: 1px solid grey;
+}
+
+QTableView#tableWidget {
+    border: 1px solid red;
+}
