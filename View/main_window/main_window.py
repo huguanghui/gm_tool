@@ -11,7 +11,7 @@ from common.version_manager import VersionManager
 
 # from components.dialog_box.dialog import Dialog
 
-from PyQt5.QtCore import Qt, QUrl
+from PyQt5.QtCore import Qt, QUrl, QCoreApplication
 from PyQt5.QtGui import QIcon, QDesktopServices, QFont
 from PyQt5.QtWidgets import (
     QApplication,
@@ -23,6 +23,7 @@ from PyQt5.QtWidgets import (
 )
 
 from View.setting_interface import SettingInterface
+from View.tab_unit import TabUnitWidget
 
 from .ui_main import Ui_MainWindow
 from enum import Enum
@@ -94,6 +95,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #     self.checkUpdate(True)
 
     def setQss(self):
+        _translate = QCoreApplication.translate
         font = QFont("微软雅黑", 10)
         font.setBold(True)
         tab_header = self.tab_list.horizontalHeader()
@@ -108,6 +110,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         tab_header.resizeSection(4, 140)
         tab_header.resizeSection(5, 100)
         tab_header.setSectionsClickable(False)
+        self.tabWidget.setTabText(
+            self.tabWidget.indexOf(self.tab), _translate("MainWindow", "索引解析")
+        )
+        self.tab_dev_unit = TabUnitWidget()
+        self.tab_dev_unit.setObjectName("tab_dev_unit")
+        self.tabWidget.addTab(self.tab_dev_unit, "")
+        self.tabWidget.setTabText(
+            self.tabWidget.indexOf(self.tab_dev_unit), _translate("MainWindow", "测试样例")
+        )
         setStyleSheet(self, "main_window")
 
     def checkUpdate(self, ignore=False):

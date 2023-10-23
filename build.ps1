@@ -8,11 +8,11 @@ pyrcc5.exe ./resource/resource.qrc -o ./common/resource.py
 
 # compile
 pyuic5.exe ./View/main_window/main.ui -o ./View/main_window/ui_main.py -x
-# pyuic5.exe ./View/page01/page01.ui -o ./View/page01/ui_page01.py -x
-# pyuic5.exe ./View/page02/page02.ui -o ./View/page02/ui_page02.py -x
+pyuic5.exe ./View/tab_unit/tab_unit.ui -o ./View/tab_unit/ui_tab_unit.py -x
+pyuic5.exe ./View/tab_dev/tab_dev.ui -o ./View/tab_dev/ui_tab_dev.py -x
 
 # language
-pylupdate5 .\View\main_window\ui_main.py -ts .\resource\i18n\ptool.zh_CN.ts
+pylupdate5 .\View\main_window\ui_main.py ./View/tab_unit/ui_tab_unit.py ./View/tab_dev/ui_tab_dev.py -ts .\resource\i18n\ptool.zh_CN.ts
 # linguist.exe .\resource\i18n\ptool.zh_CN.ts 
 lrelease .\resource\i18n\ptool.zh_CN.ts
 

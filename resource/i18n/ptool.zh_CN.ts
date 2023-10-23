@@ -4,7 +4,7 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="99"/>
+        <location filename="../../View/main_window/ui_main.py" line="102"/>
         <source>MainWindow</source>
         <translation>主窗口</translation>
     </message>
@@ -24,17 +24,17 @@
         <translation type="obsolete">添加</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="114"/>
+        <location filename="../../View/main_window/ui_main.py" line="118"/>
         <source>File</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="115"/>
+        <location filename="../../View/main_window/ui_main.py" line="119"/>
         <source>Manger</source>
         <translation>管理</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="116"/>
+        <location filename="../../View/main_window/ui_main.py" line="120"/>
         <source>Help</source>
         <translation>帮助</translation>
     </message>
@@ -49,48 +49,53 @@
         <translation type="obsolete">检测</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="117"/>
+        <location filename="../../View/main_window/ui_main.py" line="121"/>
         <source>Version</source>
         <translation>版本</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="100"/>
+        <location filename="../../View/main_window/ui_main.py" line="103"/>
         <source>请选择索引文件:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="101"/>
+        <location filename="../../View/main_window/ui_main.py" line="104"/>
         <source>打开</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="103"/>
+        <location filename="../../View/main_window/ui_main.py" line="106"/>
         <source>开始时间</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="105"/>
+        <location filename="../../View/main_window/ui_main.py" line="108"/>
         <source>结束时间</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="107"/>
+        <location filename="../../View/main_window/ui_main.py" line="110"/>
         <source>类型</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="109"/>
+        <location filename="../../View/main_window/ui_main.py" line="112"/>
         <source>文件大小(MB)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="111"/>
+        <location filename="../../View/main_window/ui_main.py" line="114"/>
         <source>平均码率(kb/s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="113"/>
+        <location filename="../../View/main_window/ui_main.py" line="116"/>
         <source>时长(sec)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../View/main_window/ui_main.py" line="117"/>
+        <source>Tab 1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -118,6 +123,32 @@
         <location filename="../../View/page02/ui_page02.py" line="45"/>
         <source>Form</source>
         <translation type="obsolete">表格</translation>
+    </message>
+</context>
+<context>
+    <name>TabDev</name>
+    <message>
+        <location filename="../../View/tab_dev/ui_tab_dev.py" line="27"/>
+        <source>Form</source>
+        <translation type="unfinished">表格</translation>
+    </message>
+    <message>
+        <location filename="../../View/tab_dev/ui_tab_dev.py" line="28"/>
+        <source>RTSP地址</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TabUnit</name>
+    <message>
+        <location filename="../../View/tab_unit/ui_tab_unit.py" line="27"/>
+        <source>Form</source>
+        <translation type="unfinished">表格</translation>
+    </message>
+    <message>
+        <location filename="../../View/tab_unit/ui_tab_unit.py" line="28"/>
+        <source>组播搜索</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
