@@ -138,20 +138,26 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             try:
                 while True:
                     # 读取文件数据
-                    item_size = ctypes.sizeof(TiSlice)
+                    ti_head_sz = ctypes.sizeof(TiHeader)
+                    head_data = file.read(ti_head_sz)
+                    head_slice = TiHeader.from_buffer_copy(head_data)
+                    print(f"head_slice.len: {head_slice.len} type: {head_slice.type}")
+                    item_size = ctypes.sizeof(TiFileInfo)
+                    if item_size != head_slice.len:
+                        continue
                     print(f"offset_sz: {offset_sz}")
                     data = file.read(item_size)
                     if not data:
                         break
                     # 将数据转换为TiFileInfo结构体对象
-                    slice = TiSlice.from_buffer_copy(data)
-                    b_local_time = time.localtime(slice.file_info.btime)  # 将时间戳转换为本地时间的结构化时间对象
+                    slice = TiFileInfo.from_buffer_copy(data)
+                    b_local_time = time.localtime(slice.btime)  # 将时间戳转换为本地时间的结构化时间对象
                     b_time_str = time.strftime("%Y-%m-%d %H:%M:%S", b_local_time)  # 将结构化时间对象转换为字符串
-                    e_local_time = time.localtime(slice.file_info.etime)  # 将时间戳转换为本地时间的结构化时间对象
+                    e_local_time = time.localtime(slice.etime)  # 将时间戳转换为本地时间的结构化时间对象
                     e_time_str = time.strftime("%Y-%m-%d %H:%M:%S", e_local_time)  # 将结构化时间对象转换为字符串
-                    file_size = slice.file_info.size / (1025 * 1024)  # 文件大小（MB）
+                    file_size = slice.size / (1025 * 1024)  # 文件大小（MB）
                     formatted_size = "{:.2f}".format(file_size)  # 保留两位小数
-                    print(f"btime: {b_time_str} etime: {e_time_str} size: {formatted_size} MB type: {slice.header.type}")
+                    print(f"btime: {b_time_str} etime: {e_time_str} size: {formatted_size} MB")
                     print(f"item_cnt: {item_cnt}")
                     item_cnt += 1
                     offset_sz += item_size
