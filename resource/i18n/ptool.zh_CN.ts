@@ -4,7 +4,7 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="65"/>
+        <location filename="../../View/main_window/ui_main.py" line="99"/>
         <source>MainWindow</source>
         <translation>主窗口</translation>
     </message>
@@ -24,17 +24,17 @@
         <translation type="obsolete">添加</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="68"/>
+        <location filename="../../View/main_window/ui_main.py" line="114"/>
         <source>File</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="69"/>
+        <location filename="../../View/main_window/ui_main.py" line="115"/>
         <source>Manger</source>
         <translation>管理</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="70"/>
+        <location filename="../../View/main_window/ui_main.py" line="116"/>
         <source>Help</source>
         <translation>帮助</translation>
     </message>
@@ -49,18 +49,48 @@
         <translation type="obsolete">检测</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="71"/>
+        <location filename="../../View/main_window/ui_main.py" line="117"/>
         <source>Version</source>
         <translation>版本</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="66"/>
+        <location filename="../../View/main_window/ui_main.py" line="100"/>
         <source>请选择索引文件:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="67"/>
+        <location filename="../../View/main_window/ui_main.py" line="101"/>
         <source>打开</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../View/main_window/ui_main.py" line="103"/>
+        <source>开始时间</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../View/main_window/ui_main.py" line="105"/>
+        <source>结束时间</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../View/main_window/ui_main.py" line="107"/>
+        <source>类型</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../View/main_window/ui_main.py" line="109"/>
+        <source>文件大小(MB)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../View/main_window/ui_main.py" line="111"/>
+        <source>平均码率(kb/s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../View/main_window/ui_main.py" line="113"/>
+        <source>时长(sec)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

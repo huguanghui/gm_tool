@@ -12,12 +12,28 @@ from common.version_manager import VersionManager
 # from components.dialog_box.dialog import Dialog
 
 from PyQt5.QtCore import Qt, QUrl
-from PyQt5.QtGui import QIcon, QDesktopServices
-from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
+from PyQt5.QtGui import QIcon, QDesktopServices, QFont
+from PyQt5.QtWidgets import (
+    QApplication,
+    QMainWindow,
+    QFileDialog,
+    QTableWidgetItem,
+    QFrame,
+    QAbstractItemView,
+)
 
 from View.setting_interface import SettingInterface
 
 from .ui_main import Ui_MainWindow
+from enum import Enum
+
+
+class LdbRectype(Enum):
+    LDB_TYPE_ZERO = 0
+    LDB_TYPE_FULL = 1
+    LDB_TYPE_FIRST = 2
+    LDB_TYPE_MIDDLE = 3
+    LDB_TYPE_LAST = 4
 
 
 class TiHeader(ctypes.Structure):
@@ -37,16 +53,13 @@ class TiFileInfo(ctypes.Structure):
         ("etime", ctypes.c_uint32),
         ("tags", ctypes.c_uint32),
         ("size", ctypes.c_uint32),
-        ("res", ctypes.c_uint32 * 3)
+        ("res", ctypes.c_uint32 * 3),
     ]
 
 
 class TiSlice(ctypes.Structure):
     _pack_ = 1
-    _fields_ = [
-        ("header", TiHeader),
-        ("file_info", TiFileInfo)
-    ]
+    _fields_ = [("header", TiHeader), ("file_info", TiFileInfo)]
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -59,13 +72,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.initWidget()
 
     def initWindow(self):
-        self.resize(800, 600)
+        self.resize(1200, 800)
         self.setWindowIcon(QIcon(":/images/logo/logo.png"))
         self.setWindowTitle(APP_NAME)
 
         desktop = QApplication.desktop().availableGeometry()
         w, h = desktop.width(), desktop.height()
         self.move(w // 2 - self.width() // 2, h // 2 - self.height() // 2)
+        self.item_lists = []
 
     def initWidget(self):
         self.setQss()
@@ -80,6 +94,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #     self.checkUpdate(True)
 
     def setQss(self):
+        font = QFont("微软雅黑", 10)
+        font.setBold(True)
+        tab_header = self.tab_list.horizontalHeader()
+        tab_header.setFont(font)
+        self.tab_list.setFrameShape(QFrame.NoFrame)
+        self.tab_list.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        tab_header.setFixedHeight(30)
+        tab_header.resizeSection(0, 180)
+        tab_header.resizeSection(1, 180)
+        tab_header.resizeSection(2, 50)
+        tab_header.resizeSection(3, 140)
+        tab_header.resizeSection(4, 140)
+        tab_header.resizeSection(5, 100)
+        tab_header.setSectionsClickable(False)
         setStyleSheet(self, "main_window")
 
     def checkUpdate(self, ignore=False):
@@ -131,38 +159,94 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         print(file_name[0])
         self.read_file(file_name[0])
 
+    def item_add(self, slice):
+        b_local_time = time.localtime(slice.btime)
+        b_time_str = time.strftime("%Y-%m-%d %H:%M:%S", b_local_time)
+        e_local_time = time.localtime(slice.etime)
+        e_time_str = time.strftime("%Y-%m-%d %H:%M:%S", e_local_time)
+        file_size = slice.size / (1024 * 1024)
+        formatted_size = "{:.2f}".format(file_size)
+        bps = (slice.size / 1024) / (slice.etime - slice.btime)
+        formatted_bps = "{:.2f}".format(bps)
+        item = {
+            "btime": b_time_str,
+            "etime": e_time_str,
+            "tag": slice.tags,
+            "size": formatted_size,
+            "bps": formatted_bps,
+            "rec_tm": slice.etime - slice.btime,
+        }
+        self.item_lists.append(item)
+
     def read_file(self, file_path):
-        item_cnt = 0
-        offset_sz = 0
-        with open(file_path, 'rb') as file:
+        self.status_bar.showMessage(f"读取文件: {file_path}")
+        self.item_lists = []
+        ti_head_sz = ctypes.sizeof(TiHeader)
+        with open(file_path, "rb") as file:
             try:
                 while True:
                     # 读取文件数据
-                    ti_head_sz = ctypes.sizeof(TiHeader)
                     head_data = file.read(ti_head_sz)
-                    head_slice = TiHeader.from_buffer_copy(head_data)
-                    print(f"head_slice.len: {head_slice.len} type: {head_slice.type}")
-                    item_size = ctypes.sizeof(TiFileInfo)
-                    if item_size != head_slice.len:
-                        continue
-                    print(f"offset_sz: {offset_sz}")
-                    data = file.read(item_size)
-                    if not data:
+                    if not head_data:
                         break
-                    # 将数据转换为TiFileInfo结构体对象
-                    slice = TiFileInfo.from_buffer_copy(data)
-                    b_local_time = time.localtime(slice.btime)  # 将时间戳转换为本地时间的结构化时间对象
-                    b_time_str = time.strftime("%Y-%m-%d %H:%M:%S", b_local_time)  # 将结构化时间对象转换为字符串
-                    e_local_time = time.localtime(slice.etime)  # 将时间戳转换为本地时间的结构化时间对象
-                    e_time_str = time.strftime("%Y-%m-%d %H:%M:%S", e_local_time)  # 将结构化时间对象转换为字符串
-                    file_size = slice.size / (1025 * 1024)  # 文件大小（MB）
-                    formatted_size = "{:.2f}".format(file_size)  # 保留两位小数
-                    print(f"btime: {b_time_str} etime: {e_time_str} size: {formatted_size} MB")
-                    print(f"item_cnt: {item_cnt}")
-                    item_cnt += 1
-                    offset_sz += item_size
+                    head_slice = TiHeader.from_buffer_copy(head_data)
+                    data = file.read(head_slice.len)
+                    if head_slice.type == LdbRectype.LDB_TYPE_FULL.value:
+                        slice = TiFileInfo.from_buffer_copy(data)
+                        self.item_add(slice)
+                    else:
+                        if head_slice.type == LdbRectype.LDB_TYPE_FIRST.value:
+                            is_ok = False
+                            slice = data
+                            while True:
+                                head_data = file.read(ti_head_sz)
+                                if not head_data:
+                                    break
+                                head_slice = TiHeader.from_buffer_copy(head_data)
+                                data = file.read(head_slice.len)
+                                slice = slice + data
+                                if head_slice.type == LdbRectype.LDB_TYPE_LAST.value:
+                                    is_ok = True
+                                    break
+                            if is_ok:
+                                slice = TiFileInfo.from_buffer_copy(slice)
+                                self.item_add(slice)
+                        print(
+                            f"head_slice.len: {head_slice.len} type: {head_slice.type}"
+                        )
             except IOError as e:
                 print(f"Error reading file: {e}")
             except Exception as e:
                 print(f"An error occurred: {e}")
-            print(f"item_cnt: {item_cnt}")
+            len_size = len(self.item_lists)
+            print(f"len: {len_size}")
+        self.tab_list_refresh()
+
+    def tab_list_refresh(self):
+        print("tab_list_refresh")
+        for i in range(self.tab_list.rowCount()):
+            self.tab_list.removeRow(0)
+        item_num = len(self.item_lists)
+        for i in range(item_num):
+            item_info = self.item_lists[i]
+            row = self.tab_list.rowCount()
+            self.tab_list.setRowCount(row + 1)
+            self.tab_list.setRowHeight(row, 28)
+            item = QTableWidgetItem(item_info["btime"])
+            item.setTextAlignment(Qt.AlignCenter)
+            self.tab_list.setItem(row, 0, item)
+            item = QTableWidgetItem(item_info["etime"])
+            item.setTextAlignment(Qt.AlignCenter)
+            self.tab_list.setItem(row, 1, item)
+            item = QTableWidgetItem(str(item_info["tag"]))
+            item.setTextAlignment(Qt.AlignCenter)
+            self.tab_list.setItem(row, 2, item)
+            item = QTableWidgetItem(item_info["size"])
+            item.setTextAlignment(Qt.AlignCenter)
+            self.tab_list.setItem(row, 3, item)
+            item = QTableWidgetItem(item_info["bps"])
+            item.setTextAlignment(Qt.AlignCenter)
+            self.tab_list.setItem(row, 4, item)
+            item = QTableWidgetItem(str(item_info["rec_tm"]))
+            item.setTextAlignment(Qt.AlignCenter)
+            self.tab_list.setItem(row, 5, item)
