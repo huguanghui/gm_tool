@@ -84,11 +84,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="114"/>
-        <source>平均码率(kb/s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../View/main_window/ui_main.py" line="116"/>
         <source>时长(sec)</source>
         <translation type="unfinished"></translation>
@@ -96,6 +91,11 @@
     <message>
         <location filename="../../View/main_window/ui_main.py" line="117"/>
         <source>Tab 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../View/main_window/ui_main.py" line="114"/>
+        <source>平均码率(KB/s)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -128,13 +128,18 @@
 <context>
     <name>TabDev</name>
     <message>
-        <location filename="../../View/tab_dev/ui_tab_dev.py" line="27"/>
+        <location filename="../../View/tab_dev/ui_tab_dev.py" line="53"/>
         <source>Form</source>
         <translation type="unfinished">表格</translation>
     </message>
     <message>
-        <location filename="../../View/tab_dev/ui_tab_dev.py" line="28"/>
+        <location filename="../../View/tab_dev/ui_tab_dev.py" line="54"/>
         <source>RTSP地址</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../View/tab_dev/ui_tab_dev.py" line="55"/>
+        <source>播放</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

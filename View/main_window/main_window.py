@@ -24,6 +24,7 @@ from PyQt5.QtWidgets import (
 
 from View.setting_interface import SettingInterface
 from View.tab_unit import TabUnitWidget
+from View.tab_dev import TabDevWidget
 
 from .ui_main import Ui_MainWindow
 from enum import Enum
@@ -113,11 +114,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.tabWidget.setTabText(
             self.tabWidget.indexOf(self.tab), _translate("MainWindow", "索引解析")
         )
-        self.tab_dev_unit = TabUnitWidget()
-        self.tab_dev_unit.setObjectName("tab_dev_unit")
-        self.tabWidget.addTab(self.tab_dev_unit, "")
+        self.tab_dev = TabDevWidget()
+        self.tab_dev.setObjectName("tab_dev_unit")
+        self.tabWidget.addTab(self.tab_dev, "")
         self.tabWidget.setTabText(
-            self.tabWidget.indexOf(self.tab_dev_unit), _translate("MainWindow", "测试样例")
+            self.tabWidget.indexOf(self.tab_dev), _translate("MainWindow", "设备管理")
+        )
+        self.tab_unit = TabUnitWidget()
+        self.tab_unit.setObjectName("tab_dev_unit")
+        self.tabWidget.addTab(self.tab_unit, "")
+        self.tabWidget.setTabText(
+            self.tabWidget.indexOf(self.tab_unit), _translate("MainWindow", "测试样例")
         )
         setStyleSheet(self, "main_window")
 
@@ -222,15 +229,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                             if is_ok:
                                 slice = TiFileInfo.from_buffer_copy(slice)
                                 self.item_add(slice)
-                        print(
-                            f"head_slice.len: {head_slice.len} type: {head_slice.type}"
-                        )
             except IOError as e:
                 print(f"Error reading file: {e}")
             except Exception as e:
                 print(f"An error occurred: {e}")
-            len_size = len(self.item_lists)
-            print(f"len: {len_size}")
         self.tab_list_refresh()
 
     def tab_list_refresh(self):

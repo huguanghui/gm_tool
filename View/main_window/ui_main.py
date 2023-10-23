@@ -111,7 +111,7 @@ class Ui_MainWindow(object):
         item = self.tab_list.horizontalHeaderItem(3)
         item.setText(_translate("MainWindow", "文件大小(MB)"))
         item = self.tab_list.horizontalHeaderItem(4)
-        item.setText(_translate("MainWindow", "平均码率(kb/s)"))
+        item.setText(_translate("MainWindow", "平均码率(KB/s)"))
         item = self.tab_list.horizontalHeaderItem(5)
         item.setText(_translate("MainWindow", "时长(sec)"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Tab 1"))

@@ -99,7 +99,7 @@
           </column>
           <column>
            <property name="text">
-            <string>平均码率(kb/s)</string>
+            <string>平均码率(KB/s)</string>
            </property>
           </column>
           <column>

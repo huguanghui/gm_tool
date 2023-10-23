@@ -22,7 +22,6 @@ class TabUnitWidget(QWidget, Ui_TabUnit):
     def __init__(self):
         super(QWidget, self).__init__()
         self.setupUi(self)
-        self.versionManager = VersionManager()
         # create sub interface
         self.initWindow()
         self.initWidget()
