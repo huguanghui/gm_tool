@@ -17,101 +17,15 @@
    <locale language="English" country="UnitedStates"/>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QGridLayout" name="gridLayout">
     <property name="topMargin">
      <number>6</number>
     </property>
     <property name="bottomMargin">
      <number>0</number>
     </property>
-    <item>
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="tab">
-       <attribute name="title">
-        <string>Tab 1</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
-        <item>
-         <widget class="QWidget" name="widget" native="true">
-          <layout class="QHBoxLayout" name="horizontalLayout" stretch="3,4,6">
-           <item>
-            <widget class="QLabel" name="label">
-             <property name="font">
-              <font>
-               <pointsize>12</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>请选择索引文件:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="btn_open">
-             <property name="text">
-              <string>打开</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QTableWidget" name="tab_list">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <column>
-           <property name="text">
-            <string>开始时间</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>结束时间</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>类型</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>文件大小(MB)</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>平均码率(KB/s)</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>时长(sec)</string>
-           </property>
-          </column>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
+    <item row="0" column="0">
+     <widget class="QMdiArea" name="mdiArea"/>
     </item>
    </layout>
   </widget>
@@ -127,45 +41,36 @@
    <property name="defaultUp">
     <bool>false</bool>
    </property>
-   <widget class="QMenu" name="menuFile">
+   <widget class="QMenu" name="menuFileTool">
     <property name="locale">
      <locale language="English" country="UnitedStates"/>
     </property>
     <property name="title">
-     <string>File</string>
+     <string>Tools</string>
     </property>
+    <addaction name="actionParseIndex"/>
    </widget>
-   <widget class="QMenu" name="menuManger">
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
+   <widget class="QMenu" name="menuAbout">
     <property name="locale">
      <locale language="English" country="UnitedStates"/>
     </property>
     <property name="title">
-     <string>Manger</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="locale">
-     <locale language="English" country="UnitedStates"/>
-    </property>
-    <property name="title">
-     <string>Help</string>
+     <string>About</string>
     </property>
     <addaction name="actionVersion"/>
    </widget>
-   <addaction name="menuFile"/>
-   <addaction name="menuManger"/>
-   <addaction name="menuHelp"/>
+   <addaction name="menuFileTool"/>
+   <addaction name="menuAbout"/>
   </widget>
-  <widget class="QStatusBar" name="status_bar"/>
+  <widget class="QStatusBar" name="statusbar"/>
   <action name="actionVersion">
    <property name="text">
     <string>Version</string>
+   </property>
+  </action>
+  <action name="actionParseIndex">
+   <property name="text">
+    <string>ParseIndex</string>
    </property>
   </action>
  </widget>

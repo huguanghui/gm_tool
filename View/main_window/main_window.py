@@ -1,7 +1,6 @@
 # coding:utf-8
-import sys
-import ctypes
-import time
+import os
+import pickle
 
 from common import resource
 from common.config import config
@@ -11,57 +10,28 @@ from common.version_manager import VersionManager
 
 # from components.dialog_box.dialog import Dialog
 
-from PyQt5.QtCore import Qt, QUrl, QCoreApplication
+from PyQt5.QtCore import Qt, QUrl
 from PyQt5.QtGui import QIcon, QDesktopServices, QFont
 from PyQt5.QtWidgets import (
+    QMessageBox,
     QApplication,
     QMainWindow,
     QFileDialog,
     QTableWidgetItem,
     QFrame,
     QAbstractItemView,
+    QProgressBar,
+    QLabel,
 )
 
 from View.setting_interface import SettingInterface
 from View.tab_unit import TabUnitWidget
 from View.tab_dev import TabDevWidget
+from View.sub_parse_index import ParseIndexWindow
 
 from .ui_main import Ui_MainWindow
-from enum import Enum
 
-
-class LdbRectype(Enum):
-    LDB_TYPE_ZERO = 0
-    LDB_TYPE_FULL = 1
-    LDB_TYPE_FIRST = 2
-    LDB_TYPE_MIDDLE = 3
-    LDB_TYPE_LAST = 4
-
-
-class TiHeader(ctypes.Structure):
-    _pack_ = 1
-    _fields_ = [
-        ("crc", ctypes.c_uint32),
-        ("len", ctypes.c_uint16),
-        ("type", ctypes.c_uint8),
-    ]
-
-
-class TiFileInfo(ctypes.Structure):
-    _fields_ = [
-        ("btime", ctypes.c_uint32),
-        ("btime_ms", ctypes.c_uint16),
-        ("channel", ctypes.c_uint16),
-        ("etime", ctypes.c_uint32),
-        ("tags", ctypes.c_uint32),
-        ("size", ctypes.c_uint32),
-        ("res", ctypes.c_uint32 * 3),
-    ]
-
-
-class TiSlice(ctypes.Structure):
-    _pack_ = 1
-    _fields_ = [("header", TiHeader), ("file_info", TiFileInfo)]
+CACHE_FILEPATH = "./config"
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -81,7 +51,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         desktop = QApplication.desktop().availableGeometry()
         w, h = desktop.width(), desktop.height()
         self.move(w // 2 - self.width() // 2, h // 2 - self.height() // 2)
-        self.item_lists = []
+        self.sub_windows = list()
+        self.filename = "./config/ImageToolsSubWindows.tmp"
+        self.sub_windows_list = list()
+        self.need_clear_cache = False
+        if os.path.exists(self.filename):
+            with open(self.filename, "rb") as fp:
+                self.sub_windows_list = pickle.load(fp)
 
     def initWidget(self):
         self.setQss()
@@ -96,36 +72,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #     self.checkUpdate(True)
 
     def setQss(self):
-        _translate = QCoreApplication.translate
-        font = QFont("微软雅黑", 10)
-        font.setBold(True)
-        tab_header = self.tab_list.horizontalHeader()
-        tab_header.setFont(font)
-        self.tab_list.setFrameShape(QFrame.NoFrame)
-        self.tab_list.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        tab_header.setFixedHeight(30)
-        tab_header.resizeSection(0, 180)
-        tab_header.resizeSection(1, 180)
-        tab_header.resizeSection(2, 50)
-        tab_header.resizeSection(3, 140)
-        tab_header.resizeSection(4, 140)
-        tab_header.resizeSection(5, 100)
-        tab_header.setSectionsClickable(False)
-        self.tabWidget.setTabText(
-            self.tabWidget.indexOf(self.tab), _translate("MainWindow", "索引解析")
-        )
-        self.tab_dev = TabDevWidget()
-        self.tab_dev.setObjectName("tab_dev_unit")
-        self.tabWidget.addTab(self.tab_dev, "")
-        self.tabWidget.setTabText(
-            self.tabWidget.indexOf(self.tab_dev), _translate("MainWindow", "设备管理")
-        )
-        self.tab_unit = TabUnitWidget()
-        self.tab_unit.setObjectName("tab_dev_unit")
-        self.tabWidget.addTab(self.tab_unit, "")
-        self.tabWidget.setTabText(
-            self.tabWidget.indexOf(self.tab_unit), _translate("MainWindow", "测试样例")
-        )
+        self.mdiArea.setStyleSheet("QTabBar::tab { height: 30px;}")
         setStyleSheet(self, "main_window")
 
     def checkUpdate(self, ignore=False):
@@ -167,99 +114,64 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def connectSignalToSlot(self):
         """connect signal to slot"""
-        self.btn_open.clicked.connect(self.file_open)
-        self.actionVersion.triggered.connect(self.checkUpdate)
-
-    def file_open(self):
-        file_name = QFileDialog.getOpenFileName(
-            self, "Open File", "./", "All Files(*);;Text Files(*.txt)"
-        )
-        print(file_name[0])
-        self.read_file(file_name[0])
-
-    def item_add(self, slice):
-        b_local_time = time.localtime(slice.btime)
-        b_time_str = time.strftime("%Y-%m-%d %H:%M:%S", b_local_time)
-        e_local_time = time.localtime(slice.etime)
-        e_time_str = time.strftime("%Y-%m-%d %H:%M:%S", e_local_time)
-        file_size = slice.size / (1024 * 1024)
-        formatted_size = "{:.2f}".format(file_size)
-        bps = (slice.size / 1024) / (slice.etime - slice.btime)
-        formatted_bps = "{:.2f}".format(bps)
-        item = {
-            "btime": b_time_str,
-            "etime": e_time_str,
-            "tag": slice.tags,
-            "size": formatted_size,
-            "bps": formatted_bps,
-            "rec_tm": slice.etime - slice.btime,
+        self.subwindow_function = {
+            "ParseIndexWindow": [self.actionParseIndex, ParseIndexWindow],
         }
-        self.item_lists.append(item)
+        self.actionVersion.triggered.connect(self.checkUpdate)
+        for key, value in self.subwindow_function.items():
+            value[0].triggered.connect(
+                lambda win_name=key, win_object=value[1]: self.add_sub_window(
+                    win_name, win_object
+                )
+            )
 
-    def read_file(self, file_path):
-        self.status_bar.showMessage(f"读取文件: {file_path}")
-        self.item_lists = []
-        ti_head_sz = ctypes.sizeof(TiHeader)
-        with open(file_path, "rb") as file:
-            try:
-                while True:
-                    # 读取文件数据
-                    head_data = file.read(ti_head_sz)
-                    if not head_data:
-                        break
-                    head_slice = TiHeader.from_buffer_copy(head_data)
-                    data = file.read(head_slice.len)
-                    if head_slice.type == LdbRectype.LDB_TYPE_FULL.value:
-                        slice = TiFileInfo.from_buffer_copy(data)
-                        self.item_add(slice)
-                    else:
-                        if head_slice.type == LdbRectype.LDB_TYPE_FIRST.value:
-                            is_ok = False
-                            slice = data
-                            while True:
-                                head_data = file.read(ti_head_sz)
-                                if not head_data:
-                                    break
-                                head_slice = TiHeader.from_buffer_copy(head_data)
-                                data = file.read(head_slice.len)
-                                slice = slice + data
-                                if head_slice.type == LdbRectype.LDB_TYPE_LAST.value:
-                                    is_ok = True
-                                    break
-                            if is_ok:
-                                slice = TiFileInfo.from_buffer_copy(slice)
-                                self.item_add(slice)
-            except IOError as e:
-                print(f"Error reading file: {e}")
-            except Exception as e:
-                print(f"An error occurred: {e}")
-        self.tab_list_refresh()
+    def add_sub_window(self, name, win_object):
+        sub_window = win_object(parent=self)
+        self.mdiArea.addSubWindow(sub_window)
+        self.sub_windows.append(sub_window)
+        sub_window.show()
 
-    def tab_list_refresh(self):
-        print("tab_list_refresh")
-        for i in range(self.tab_list.rowCount()):
-            self.tab_list.removeRow(0)
-        item_num = len(self.item_lists)
-        for i in range(item_num):
-            item_info = self.item_lists[i]
-            row = self.tab_list.rowCount()
-            self.tab_list.setRowCount(row + 1)
-            self.tab_list.setRowHeight(row, 28)
-            item = QTableWidgetItem(item_info["btime"])
-            item.setTextAlignment(Qt.AlignCenter)
-            self.tab_list.setItem(row, 0, item)
-            item = QTableWidgetItem(item_info["etime"])
-            item.setTextAlignment(Qt.AlignCenter)
-            self.tab_list.setItem(row, 1, item)
-            item = QTableWidgetItem(str(item_info["tag"]))
-            item.setTextAlignment(Qt.AlignCenter)
-            self.tab_list.setItem(row, 2, item)
-            item = QTableWidgetItem(item_info["size"])
-            item.setTextAlignment(Qt.AlignCenter)
-            self.tab_list.setItem(row, 3, item)
-            item = QTableWidgetItem(item_info["bps"])
-            item.setTextAlignment(Qt.AlignCenter)
-            self.tab_list.setItem(row, 4, item)
-            item = QTableWidgetItem(str(item_info["rec_tm"]))
-            item.setTextAlignment(Qt.AlignCenter)
-            self.tab_list.setItem(row, 5, item)
+    def closeEvent(self, event):
+        """
+        重写closeEvent方法，实现dialog窗体关闭时执行一些代码
+        :param event: close()触发的事件
+        :return: None
+        """
+        # reply = QMessageBox().question(
+        #     self,
+        #     "ImageTools",
+        #     "是否要退出程序？",
+        #     QMessageBox.Yes | QMessageBox.No,
+        #     QMessageBox.No,
+        # )
+        msgBox = QMessageBox()
+        msgBox.setWindowFlags(msgBox.windowFlags() | Qt.WindowStaysOnTopHint)
+        msgBox.setWindowFlags(msgBox.windowFlags() & ~Qt.WindowMinMaxButtonsHint)
+        msgBox.setWindowTitle("ImageTools")
+        msgBox.setText("是否要退出程序？")
+        msgBox.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        msgBox.setDefaultButton(QMessageBox.No)
+        msgBox.button(QMessageBox.Yes).setText("是")
+        msgBox.button(QMessageBox.No).setText("否")
+        reply = msgBox.exec_()
+        if reply == QMessageBox.Yes:
+            if self.need_clear_cache == False:
+                if not os.path.exists(CACHE_FILEPATH):
+                    os.mkdir(CACHE_FILEPATH)
+                sub_windows_list = list()
+                while len(self.sub_windows) > 0:
+                    if self.sub_windows[0].name is not None:
+                        sub_windows_list.append(self.sub_windows[0].name)
+                        self.sub_windows[0].close()
+                with open(self.filename, "wb") as fp:
+                    pickle.dump(sub_windows_list, fp)
+            else:
+                # 清楚缓存
+                if os.path.exists(CACHE_FILEPATH):
+                    for files in os.listdir(CACHE_FILEPATH):
+                        filepath = os.path.join(CACHE_FILEPATH, files)
+                        if os.path.isfile(filepath):
+                            os.remove(filepath)
+            event.accept()
+        else:
+            event.ignore()

@@ -1,13 +1,8 @@
 # coding:utf-8
-import sys
-import ctypes
-import time
 import vlc
-import os
 
 from common import resource
 from common.config import config
-from common.setting import APP_NAME, RELEASE_URL
 from common.style_sheet import setStyleSheet
 from common.version_manager import VersionManager
 
@@ -53,6 +48,6 @@ class TabDevWidget(QWidget, Ui_TabDev):
 
     def onPlay(self):
         print("play")
-        media = self.vlc_instance.media_new("rtsp://admin:admin@192.168.31.117/0/0")
+        media = self.vlc_instance.media_new("rtsp://admin:123456@192.168.3.121/0/0")
         self.media_player.set_media(media)
         self.media_player.play()

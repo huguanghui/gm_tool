@@ -4,7 +4,7 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="102"/>
+        <location filename="../../View/main_window/ui_main.py" line="56"/>
         <source>MainWindow</source>
         <translation>主窗口</translation>
     </message>
@@ -26,17 +26,17 @@
     <message>
         <location filename="../../View/main_window/ui_main.py" line="118"/>
         <source>File</source>
-        <translation>文件</translation>
+        <translation type="obsolete">文件</translation>
     </message>
     <message>
         <location filename="../../View/main_window/ui_main.py" line="119"/>
         <source>Manger</source>
-        <translation>管理</translation>
+        <translation type="obsolete">管理</translation>
     </message>
     <message>
         <location filename="../../View/main_window/ui_main.py" line="120"/>
         <source>Help</source>
-        <translation>帮助</translation>
+        <translation type="obsolete">帮助</translation>
     </message>
     <message>
         <location filename="../../View/main_window/ui_main.py" line="260"/>
@@ -49,54 +49,24 @@
         <translation type="obsolete">检测</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="121"/>
+        <location filename="../../View/main_window/ui_main.py" line="59"/>
         <source>Version</source>
         <translation>版本</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="103"/>
-        <source>请选择索引文件:</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../View/main_window/ui_main.py" line="57"/>
+        <source>Tools</source>
+        <translation>工具</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="104"/>
-        <source>打开</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../View/main_window/ui_main.py" line="58"/>
+        <source>About</source>
+        <translation>关于</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="106"/>
-        <source>开始时间</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../View/main_window/ui_main.py" line="108"/>
-        <source>结束时间</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../View/main_window/ui_main.py" line="110"/>
-        <source>类型</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../View/main_window/ui_main.py" line="112"/>
-        <source>文件大小(MB)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../View/main_window/ui_main.py" line="116"/>
-        <source>时长(sec)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../View/main_window/ui_main.py" line="117"/>
-        <source>Tab 1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../View/main_window/ui_main.py" line="114"/>
-        <source>平均码率(KB/s)</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../View/main_window/ui_main.py" line="60"/>
+        <source>ParseIndex</source>
+        <translation>录像索引解析</translation>
     </message>
 </context>
 <context>
@@ -123,6 +93,54 @@
         <location filename="../../View/page02/ui_page02.py" line="45"/>
         <source>Form</source>
         <translation type="obsolete">表格</translation>
+    </message>
+</context>
+<context>
+    <name>ParseIndex</name>
+    <message>
+        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="72"/>
+        <source>MainWindow</source>
+        <translation type="unfinished">主窗口</translation>
+    </message>
+    <message>
+        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="73"/>
+        <source>请选择索引文件:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="74"/>
+        <source>打开</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="76"/>
+        <source>新建列</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="78"/>
+        <source>开始时间</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="80"/>
+        <source>结束时间</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="82"/>
+        <source>文件大小(MB)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="84"/>
+        <source>平均码率(KB/s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="86"/>
+        <source>时长(sec)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
