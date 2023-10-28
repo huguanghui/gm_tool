@@ -1,28 +1,20 @@
 # coding:utf-8
-import os
-import pickle
-
-from common import resource
-from common.config import config
-from common.setting import APP_NAME, RELEASE_URL
-from common.style_sheet import setStyleSheet
-from common.version_manager import VersionManager
-
-# from components.dialog_box.dialog import Dialog
-
 from PyQt5.QtCore import Qt, QUrl
-from PyQt5.QtGui import QIcon, QDesktopServices, QFont
+from PyQt5.QtGui import QIcon, QDesktopServices
 from PyQt5.QtWidgets import (
     QMessageBox,
     QApplication,
     QMainWindow,
-    QFileDialog,
-    QTableWidgetItem,
-    QFrame,
-    QAbstractItemView,
-    QProgressBar,
-    QLabel,
 )
+
+import os
+import pickle
+
+import resource_rc
+from common.config import config
+from common.setting import APP_NAME, RELEASE_URL
+from common.style_sheet import setStyleSheet
+from common.version_manager import VersionManager
 
 from View.setting_interface import SettingInterface
 from View.tab_unit import TabUnitWidget

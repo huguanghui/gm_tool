@@ -100,7 +100,7 @@
     <message>
         <location filename="../../View/sub_parse_index/ui_parse_index.py" line="72"/>
         <source>MainWindow</source>
-        <translation type="unfinished">主窗口</translation>
+        <translation type="obsolete">主窗口</translation>
     </message>
     <message>
         <location filename="../../View/sub_parse_index/ui_parse_index.py" line="73"/>
@@ -140,6 +140,11 @@
     <message>
         <location filename="../../View/sub_parse_index/ui_parse_index.py" line="86"/>
         <source>时长(sec)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="72"/>
+        <source>录像索引解析</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

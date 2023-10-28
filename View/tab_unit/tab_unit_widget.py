@@ -3,7 +3,7 @@ import sys
 import ctypes
 import time
 
-from common import resource
+import resource_rc
 from common.config import config
 from common.setting import APP_NAME, RELEASE_URL
 from common.style_sheet import setStyleSheet

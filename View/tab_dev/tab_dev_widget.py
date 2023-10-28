@@ -1,7 +1,7 @@
 # coding:utf-8
 import vlc
 
-from common import resource
+import resource_rc
 from common.config import config
 from common.style_sheet import setStyleSheet
 from common.version_manager import VersionManager

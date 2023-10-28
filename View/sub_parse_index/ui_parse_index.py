@@ -57,7 +57,7 @@ class Ui_ParseIndex(object):
         self.verticalLayout.addWidget(self.tab_list)
         ParseIndex.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(ParseIndex)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 23))
         self.menubar.setObjectName("menubar")
         ParseIndex.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(ParseIndex)
@@ -69,7 +69,7 @@ class Ui_ParseIndex(object):
 
     def retranslateUi(self, ParseIndex):
         _translate = QtCore.QCoreApplication.translate
-        ParseIndex.setWindowTitle(_translate("ParseIndex", "MainWindow"))
+        ParseIndex.setWindowTitle(_translate("ParseIndex", "录像索引解析"))
         self.label.setText(_translate("ParseIndex", "请选择索引文件:"))
         self.btn_open.setText(_translate("ParseIndex", "打开"))
         item = self.tab_list.horizontalHeaderItem(0)
@@ -84,6 +84,7 @@ class Ui_ParseIndex(object):
         item.setText(_translate("ParseIndex", "平均码率(KB/s)"))
         item = self.tab_list.horizontalHeaderItem(5)
         item.setText(_translate("ParseIndex", "时长(sec)"))
+import resource_rc
 
 
 if __name__ == "__main__":
