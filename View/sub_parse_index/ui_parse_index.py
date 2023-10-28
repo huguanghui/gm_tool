@@ -15,6 +15,7 @@ class Ui_ParseIndex(object):
     def setupUi(self, ParseIndex):
         ParseIndex.setObjectName("ParseIndex")
         ParseIndex.resize(800, 600)
+        ParseIndex.setDockOptions(QtWidgets.QMainWindow.AllowTabbedDocks|QtWidgets.QMainWindow.AnimatedDocks|QtWidgets.QMainWindow.GroupedDragging|QtWidgets.QMainWindow.VerticalTabs)
         self.centralwidget = QtWidgets.QWidget(ParseIndex)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -59,10 +60,13 @@ class Ui_ParseIndex(object):
         self.menubar = QtWidgets.QMenuBar(ParseIndex)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 23))
         self.menubar.setObjectName("menubar")
+        self.menu = QtWidgets.QMenu(self.menubar)
+        self.menu.setObjectName("menu")
         ParseIndex.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(ParseIndex)
         self.statusbar.setObjectName("statusbar")
         ParseIndex.setStatusBar(self.statusbar)
+        self.menubar.addAction(self.menu.menuAction())
 
         self.retranslateUi(ParseIndex)
         QtCore.QMetaObject.connectSlotsByName(ParseIndex)
@@ -84,6 +88,7 @@ class Ui_ParseIndex(object):
         item.setText(_translate("ParseIndex", "平均码率(KB/s)"))
         item = self.tab_list.horizontalHeaderItem(5)
         item.setText(_translate("ParseIndex", "时长(sec)"))
+        self.menu.setTitle(_translate("ParseIndex", "工具"))
 import resource_rc
 
 
