@@ -31,6 +31,7 @@ if __name__ == "__main__":
     # app = QApplication(sys.argv)
     # app.setApplicationName(APP_NAME)
     app = SingletonApplication(sys.argv, APP_NAME)
+    app.setStyle('Fusion')
     translator = QTranslator()
     language = config.get(config.language)  # type: Language
     print("language:", QLocale.system().name())
