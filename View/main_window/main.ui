@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1012</width>
-    <height>767</height>
+    <width>1016</width>
+    <height>776</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,6 +26,9 @@
     </property>
     <item row="0" column="0">
      <widget class="QMdiArea" name="mdiArea">
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
       <property name="locale">
        <locale language="Chinese" country="China"/>
       </property>
@@ -56,8 +59,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1012</width>
-     <height>26</height>
+     <width>1016</width>
+     <height>23</height>
     </rect>
    </property>
    <property name="defaultUp">
@@ -79,20 +82,26 @@
     <property name="title">
      <string>About</string>
     </property>
+    <addaction name="actionUserGuide"/>
     <addaction name="actionVersion"/>
    </widget>
    <addaction name="menuFileTool"/>
    <addaction name="menuAbout"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionVersion">
+  <action name="actionUserGuide">
    <property name="text">
-    <string>Version</string>
+    <string>UserGuide</string>
    </property>
   </action>
   <action name="actionParseIndex">
    <property name="text">
     <string>ParseIndex</string>
+   </property>
+  </action>
+  <action name="actionVersion">
+   <property name="text">
+    <string>Version</string>
    </property>
   </action>
  </widget>

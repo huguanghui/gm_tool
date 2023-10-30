@@ -2,9 +2,25 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN" sourcelanguage="en">
 <context>
+    <name>Help</name>
+    <message>
+        <location filename="../../View/help_widget/ui_help.py" line="29"/>
+        <source>Form</source>
+        <translation type="obsolete">表格</translation>
+    </message>
+</context>
+<context>
+    <name>HelpWindow</name>
+    <message>
+        <location filename="../../View/help_widget/ui_help.py" line="42"/>
+        <source>帮助手册</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="63"/>
+        <location filename="../../View/main_window/ui_main.py" line="67"/>
         <source>MainWindow</source>
         <translation>主窗口</translation>
     </message>
@@ -49,24 +65,29 @@
         <translation type="obsolete">检测</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="66"/>
+        <location filename="../../View/main_window/ui_main.py" line="72"/>
         <source>Version</source>
         <translation>版本</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="64"/>
+        <location filename="../../View/main_window/ui_main.py" line="68"/>
         <source>Tools</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="65"/>
+        <location filename="../../View/main_window/ui_main.py" line="69"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="67"/>
+        <location filename="../../View/main_window/ui_main.py" line="71"/>
         <source>ParseIndex</source>
         <translation>录像索引解析</translation>
+    </message>
+    <message>
+        <location filename="../../View/main_window/ui_main.py" line="70"/>
+        <source>UserGuide</source>
+        <translation>用户手册</translation>
     </message>
 </context>
 <context>

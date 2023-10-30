@@ -20,6 +20,7 @@ from View.setting_interface import SettingInterface
 from View.tab_unit import TabUnitWidget
 from View.tab_dev import TabDevWidget
 from View.sub_parse_index import ParseIndexWindow
+from View.help_widget import HelpDoc
 
 from .ui_main import Ui_MainWindow
 
@@ -108,6 +109,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """connect signal to slot"""
         self.subwindow_function = {
             "ParseIndexWindow": [self.actionParseIndex, ParseIndexWindow],
+            "HelpDoc": [self.actionUserGuide, HelpDoc],
         }
         self.actionVersion.triggered.connect(self.checkUpdate)
         for key, value in self.subwindow_function.items():
@@ -129,13 +131,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         :param event: close()触发的事件
         :return: None
         """
-        # reply = QMessageBox().question(
-        #     self,
-        #     "ImageTools",
-        #     "是否要退出程序？",
-        #     QMessageBox.Yes | QMessageBox.No,
-        #     QMessageBox.No,
-        # )
         msgBox = QMessageBox()
         msgBox.setWindowFlags(msgBox.windowFlags() | Qt.WindowStaysOnTopHint)
         msgBox.setWindowFlags(msgBox.windowFlags() & ~Qt.WindowMinMaxButtonsHint)

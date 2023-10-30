@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1012, 767)
+        MainWindow.resize(1016, 776)
         MainWindow.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -22,6 +22,7 @@ class Ui_MainWindow(object):
         self.gridLayout.setContentsMargins(-1, 6, -1, 0)
         self.gridLayout.setObjectName("gridLayout")
         self.mdiArea = QtWidgets.QMdiArea(self.centralwidget)
+        self.mdiArea.setAcceptDrops(True)
         self.mdiArea.setLocale(QtCore.QLocale(QtCore.QLocale.Chinese, QtCore.QLocale.China))
         self.mdiArea.setLineWidth(0)
         self.mdiArea.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
@@ -33,7 +34,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.mdiArea, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1012, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1016, 23))
         self.menubar.setDefaultUp(False)
         self.menubar.setObjectName("menubar")
         self.menuFileTool = QtWidgets.QMenu(self.menubar)
@@ -46,11 +47,14 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-        self.actionVersion = QtWidgets.QAction(MainWindow)
-        self.actionVersion.setObjectName("actionVersion")
+        self.actionUserGuide = QtWidgets.QAction(MainWindow)
+        self.actionUserGuide.setObjectName("actionUserGuide")
         self.actionParseIndex = QtWidgets.QAction(MainWindow)
         self.actionParseIndex.setObjectName("actionParseIndex")
+        self.actionVersion = QtWidgets.QAction(MainWindow)
+        self.actionVersion.setObjectName("actionVersion")
         self.menuFileTool.addAction(self.actionParseIndex)
+        self.menuAbout.addAction(self.actionUserGuide)
         self.menuAbout.addAction(self.actionVersion)
         self.menubar.addAction(self.menuFileTool.menuAction())
         self.menubar.addAction(self.menuAbout.menuAction())
@@ -63,8 +67,9 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.menuFileTool.setTitle(_translate("MainWindow", "Tools"))
         self.menuAbout.setTitle(_translate("MainWindow", "About"))
-        self.actionVersion.setText(_translate("MainWindow", "Version"))
+        self.actionUserGuide.setText(_translate("MainWindow", "UserGuide"))
         self.actionParseIndex.setText(_translate("MainWindow", "ParseIndex"))
+        self.actionVersion.setText(_translate("MainWindow", "Version"))
 
 
 if __name__ == "__main__":
