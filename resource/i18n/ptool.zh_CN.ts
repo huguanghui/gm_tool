@@ -20,7 +20,7 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="67"/>
+        <location filename="../../View/main_window/ui_main.py" line="70"/>
         <source>MainWindow</source>
         <translation>主窗口</translation>
     </message>
@@ -65,29 +65,34 @@
         <translation type="obsolete">检测</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="72"/>
+        <location filename="../../View/main_window/ui_main.py" line="75"/>
         <source>Version</source>
         <translation>版本</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="68"/>
+        <location filename="../../View/main_window/ui_main.py" line="71"/>
         <source>Tools</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="69"/>
+        <location filename="../../View/main_window/ui_main.py" line="72"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="71"/>
+        <location filename="../../View/main_window/ui_main.py" line="74"/>
         <source>ParseIndex</source>
         <translation>录像索引解析</translation>
     </message>
     <message>
-        <location filename="../../View/main_window/ui_main.py" line="70"/>
+        <location filename="../../View/main_window/ui_main.py" line="73"/>
         <source>UserGuide</source>
         <translation>用户手册</translation>
+    </message>
+    <message>
+        <location filename="../../View/main_window/ui_main.py" line="76"/>
+        <source>Splice</source>
+        <translation>双目拼接调试</translation>
     </message>
 </context>
 <context>
@@ -124,53 +129,61 @@
         <translation type="obsolete">主窗口</translation>
     </message>
     <message>
-        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="77"/>
+        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="83"/>
         <source>请选择索引文件:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="78"/>
+        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="84"/>
         <source>打开</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="80"/>
-        <source>新建列</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="82"/>
+        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="86"/>
         <source>开始时间</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="84"/>
+        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="88"/>
         <source>结束时间</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="86"/>
+        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="92"/>
         <source>文件大小(MB)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="88"/>
+        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="94"/>
         <source>平均码率(KB/s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="90"/>
+        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="96"/>
         <source>时长(sec)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="76"/>
+        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="82"/>
         <source>录像索引解析</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="91"/>
+        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="97"/>
         <source>工具</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../View/sub_parse_index/ui_parse_index.py" line="90"/>
+        <source>类型</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Splice</name>
+    <message>
+        <location filename="../../View/sub_splicing/ui_splicing.py" line="34"/>
+        <source>拼接调试工具</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

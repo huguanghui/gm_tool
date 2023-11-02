@@ -34,7 +34,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.mdiArea, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1016, 23))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1016, 26))
         self.menubar.setDefaultUp(False)
         self.menubar.setObjectName("menubar")
         self.menuFileTool = QtWidgets.QMenu(self.menubar)
@@ -53,7 +53,10 @@ class Ui_MainWindow(object):
         self.actionParseIndex.setObjectName("actionParseIndex")
         self.actionVersion = QtWidgets.QAction(MainWindow)
         self.actionVersion.setObjectName("actionVersion")
+        self.actionSplice = QtWidgets.QAction(MainWindow)
+        self.actionSplice.setObjectName("actionSplice")
         self.menuFileTool.addAction(self.actionParseIndex)
+        self.menuFileTool.addAction(self.actionSplice)
         self.menuAbout.addAction(self.actionUserGuide)
         self.menuAbout.addAction(self.actionVersion)
         self.menubar.addAction(self.menuFileTool.menuAction())
@@ -70,6 +73,7 @@ class Ui_MainWindow(object):
         self.actionUserGuide.setText(_translate("MainWindow", "UserGuide"))
         self.actionParseIndex.setText(_translate("MainWindow", "ParseIndex"))
         self.actionVersion.setText(_translate("MainWindow", "Version"))
+        self.actionSplice.setText(_translate("MainWindow", "Splice"))
 
 
 if __name__ == "__main__":

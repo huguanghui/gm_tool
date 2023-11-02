@@ -10,6 +10,12 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <weight>50</weight>
+    <bold>false</bold>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>录像索引解析</string>
   </property>
@@ -26,6 +32,8 @@
          <property name="font">
           <font>
            <pointsize>12</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
           </font>
          </property>
          <property name="text">
@@ -60,17 +68,17 @@
      <widget class="QTableWidget" name="tab_list">
       <column>
        <property name="text">
-        <string>新建列</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
         <string>开始时间</string>
        </property>
       </column>
       <column>
        <property name="text">
         <string>结束时间</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>类型</string>
        </property>
       </column>
       <column>
@@ -98,7 +106,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>23</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
